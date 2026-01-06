@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template
 import pickle
+import os
 import pandas as pd
 import numpy as np
 import io
@@ -10,8 +11,9 @@ import matplotlib.pyplot as plt
 
 app = Flask(__name__)
 
-# Load trained ML model
-model = pickle.load(open("model.pkl", "rb"))
+print("Saving model to:", os.getcwd())
+pickle.dump(model, open(r"D:\ML-Project-2\model.pkl", "wb"))
+print("Model saved successfully!")
 
 # Load dataset for graphs and statistics
 df = pd.read_csv("data.csv")
