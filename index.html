@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>House Price Predictor</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        body {
+    background: #f2f2f2;
+    font-family: Arial;
+}
+
+.container {
+    width: 450px;
+    margin: 60px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0 15px 0;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>House Price Prediction</h2>
+
+    <form method="post">
+        <label>Living Area (sqft)</label>
+        <input type="number" name="sqft" required>
+
+        <label>Bedrooms</label>
+        <input type="number" name="bedrooms" required>
+
+        <label>Bathrooms</label>
+        <input type="number" name="bathrooms" required>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    <h3>📊 Statistics</h3>
+    <ul>
+        <li>Average Study Time: {{ avg_studytime }}</li>
+        <li>Average Price: ₹{{ avg_price }}</li>
+        <li>Correlation: {{ corr_value }}</li>
+    </ul>
+
+    {% if graph %}
+    <h3>📈 Insights Graph</h3>
+    <img src="data:image/png;base64,{{ graph }}">
+    {% endif %}
+
+    {% if prediction is not none %}
+    <div id="resultBox" class="result">
+        Predicted Price: ₹{{ prediction }}
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
