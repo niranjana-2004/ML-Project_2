@@ -115,6 +115,43 @@ html_code = """
         padding: 20px;
         border: 2px solid #007BFF;
     }
+    .modal {
+  display: none;
+  position: fixed;
+  z-index: 20;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background: #ffffff;
+  width: 350px;
+  margin: 120px auto;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.close-btn {
+  float: right;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: red;
+}
+
+button {
+  margin-top: 15px;
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+}
     </style>
 
 </head>
@@ -140,10 +177,20 @@ html_code = """
 
 </form>
 
-{% if prediction %}
-<script>
-alert("Predicted Result: ₹{{ prediction }}");
-</script>
+{% if prediction is not none %}
+<div id="resultModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+
+    <h3>Prediction Result</h3>
+
+    <p><strong>Final Grade (G3):</strong> {{ prediction }}</p>
+    <p><strong>Status:</strong> {{ status }}</p>
+    <p><strong>Performance:</strong> {{ level }}</p>
+
+    <button onclick="closeModal()">OK</button>
+  </div>
+</div>
 {% endif %}
 
 <h3>Statistics Summary</h3>
@@ -180,6 +227,15 @@ Correlation (Bathrooms vs Price): {{ corr_bath }}
 </div>
 
 </div>
+<script>
+function closeModal() {
+  document.getElementById("resultModal").style.display = "none";
+}
+
+{% if prediction is not none %}
+  document.getElementById("resultModal").style.display = "block";
+{% endif %}
+</script>
 
 </body>
 </html>
