@@ -182,12 +182,9 @@ button {
   <div class="modal-content">
     <span class="close-btn" onclick="closeModal()">&times;</span>
 
-    <h3>Prediction Result</h3>
+    <h3>Predicted Price</h3>
 
-    <p><strong>Final Grade (G3):</strong> {{ prediction }}</p>
-    <p><strong>Status:</strong> {{ status }}</p>
-    <p><strong>Performance:</strong> {{ level }}</p>
-
+    <p><strong>Price:</strong> {{ prediction }}</p>
     <button onclick="closeModal()">OK</button>
   </div>
 </div>
