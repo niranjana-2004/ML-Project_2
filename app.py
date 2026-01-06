@@ -10,7 +10,7 @@ import base64
 
 app = Flask(__name__)
 
-model = pickle.load(open("model(1).pkl","rb"))
+model = pickle.load(open("model (1).pkl","rb"))
 df = pd.read_csv("data.csv")
 
 # Basic statistics
