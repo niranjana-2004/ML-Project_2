@@ -11,9 +11,7 @@ import matplotlib.pyplot as plt
 
 app = Flask(__name__)
 
-print("Saving model to:", os.getcwd())
-pickle.dump(model, open(r"D:\ML-Project-2\model.pkl", "wb"))
-print("Model saved successfully!")
+model = pickle.load(open("model.pkl", "rb"))
 
 # Load dataset for graphs and statistics
 df = pd.read_csv("data.csv")
